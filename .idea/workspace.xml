@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f24c53d2-a3ba-4552-9fd1-2109f2ec5d5b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/apps/booking/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/booking/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/booking/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/booking/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/theater/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/theater/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/theater/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/theater/models.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2PYsgywq9n043kcvyXbOkKnj4q9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f24c53d2-a3ba-4552-9fd1-2109f2ec5d5b" name="Changes" comment="" />
+      <created>1683645465086</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683645465086</updated>
+    </task>
+    <servers />
+  </component>
+</project>
