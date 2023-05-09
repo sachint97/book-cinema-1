@@ -75,7 +75,7 @@ class Screen(models.Model):
     theater = models.ForeignKey(Theater, on_delete=models.CASCADE, related_name='screen')
 
     def __str__(self):
-        return str(self.name)
+        return f"{self.name}-{self.theater.name}"
 
     def save(self, *args, **kwargs):
         self.slug = unique_slug_generator(self, variable=self.name)
@@ -83,42 +83,48 @@ class Screen(models.Model):
         super().save(*args, **kwargs)
 
 
+class Show(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='show')
+    start_date = models.DateField(auto_now=False, auto_now_add=False,null=True,blank=True)
+    end_date = models.DateField(auto_now=False, auto_now_add=False,null=True,blank=True)
+    start_time = models.TimeField(auto_now=False, auto_now_add=False,null=True,blank=True)
+    end_time = models.TimeField(auto_now=False, auto_now_add=False,null=True,blank=True)
+
+    def __str__(self):
+        return f'{self.movie.title}:[{self.start_date}-{self.end_date}][{self.start_time}-{self.end_time}]'
+
+class ScreenShowMapper(models.Model):
+    screen = models.ForeignKey(Screen, on_delete=models.CASCADE, related_name='screen_show')
+    show = models.ForeignKey(Show,on_delete=models.CASCADE, related_name='screen_show')
+
+    def __str__(self):
+        return f"{self.screen} {self.show}"
+class SeatingClass(models.Model):
+    name = models.CharField(max_length=50,null=False,blank=False,unique=True)
+    slug = models.SlugField(max_length=255, null=True, editable=False)
+    def __str__(self):
+        return f"{self.name}"
+
+    def save(self, *args, **kwargs):
+        self.slug = unique_slug_generator(self, variable=self.name)
+        self.clean()
+        super().save(*args, **kwargs)
+
+class Fare(models.Model):
+    screen_show = models.ForeignKey(ScreenShowMapper,on_delete=models.CASCADE, related_name='fare')
+    seating_class = models.ForeignKey(SeatingClass,on_delete=models.CASCADE, related_name='fare')
+    price = models.IntegerField(null=False,blank=False)
+
+    def __str__(self):
+        return f"{self.screen_show} {self.seating_class}-{self.price}Rs"
 class Seat(models.Model):
-    seat_number = models.IntegerField(null=False, blank=False, unique=True)
+    screen = models.ForeignKey(Screen, on_delete=models.CASCADE, related_name='seats')
+    fare = models.ForeignKey(Fare,on_delete=models.CASCADE,related_name="seats")
+    row = models.IntegerField(null=False, blank=False)
+    column = models.IntegerField(null=False,blank=False)
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'seat number {self.seat_number}'
-
-
-class Show(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='show')
-    screen = models.ForeignKey(Screen, on_delete=models.CASCADE, related_name='show')
-    start_time = models.DateTimeField(auto_now=False, auto_now_add=False)
-    end_time = models.DateTimeField(auto_now=False, auto_now_add=False)
-
-    def __str__(self):
-        return f'{self.movie.title} - {self.start_time}'
-
-
-class Booking(models.Model):
-    number_of_seats = models.IntegerField(null=False, blank=False)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='booking')
-    show = models.ForeignKey(Show, on_delete=models.CASCADE, related_name='booking')
-    booking_time = models.DateTimeField(auto_now_add=True)
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f'{self.profile.user.username} - {self.show.movie.title} - {self.number_of_seats}'
-
-
-class SelectedSeat(models.Model):
-    price = models.IntegerField()
-    seat = models.ForeignKey(Seat, on_delete=models.CASCADE, related_name='selected_seat')
-    show = models.ForeignKey(Show, on_delete=models.CASCADE, related_name='selected_seat')
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE, related_name='selected_seat')
-
-    def __str__(self):
-        return f"{self.booking.profile.user.username} - {self.seat.seat_number}"
+        return f"{self.screen} {self.fare.seating_class}:Row-{self.row},Column-{self.column}"
 
 

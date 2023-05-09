@@ -6,8 +6,10 @@ admin.site.register(Movie)
 admin.site.register(Media)
 admin.site.register(Theater)
 admin.site.register(Screen)
-admin.site.register(Seat)
 admin.site.register(Show)
-admin.site.register(Booking)
-admin.site.register(SelectedSeat)
+admin.site.register(ScreenShowMapper)
+admin.site.register(SeatingClass)
+admin.site.register(Fare)
+admin.site.register(Seat)
+
 
